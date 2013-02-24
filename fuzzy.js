@@ -90,3 +90,5 @@ var fuzzy = (function () {
 
     return fuzzy;
 })();
+
+exports.fuzzy = fuzzy;
