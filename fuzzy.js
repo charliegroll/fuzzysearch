@@ -12,11 +12,10 @@ var fuzzy = (function () {
         caseSensitive = typeof caseSensitive !== 'undefined' ? caseSensitive : false;
 
         if (!caseSensitive) {
-            // we need lower case input and query
+            // we need lower case input
         }
 
-        var fuzz = explode(query.toLowerCase());
-        console.log(fuzz);
+        var fuzz = explode(query.toLowerCase(), false);
         
         for (var i=0; i<input.length; i++) {
             var thing = input[i],
@@ -77,8 +76,10 @@ var fuzzy = (function () {
         return result;
     }
 
-    var explode = function (string) {
+    var explode = function (string, duplicates) {
         var result = [];
+        duplicates = typeof duplicates !== 'undefined' ? duplicates : true;
+
         for (var i=0; i<string.length; i++) {
             if (string[i] != ' ') {
                 result.push(string[i]);
