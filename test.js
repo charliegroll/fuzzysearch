@@ -7,12 +7,12 @@ var test = [],
 	    input: fs.createReadStream(filename),
 	    terminal: false
 	}).on('line', function(line){
-	    test.push(line);
-	    if (test.length == 1000) {
+	    test.push(line.slice(0,-1));
+	    if (test.length == 100) {
 	        rl.close();
 	    }
 	}).on('close', function() {
 	    console.log(test.length);
-	    result = fuzzy(test, "s");
+	    result = fuzzy(test, "dide");
 	    console.log(result);
 	});

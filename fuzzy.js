@@ -8,32 +8,42 @@ var fuzzy = (function () {
 
     // input: array of what's to be searched
     // query: what we're searching for... duh
+    // caseSensitive: boolean, defaults to false (means we don't care about case)
     var fuzzy = function (input, query, caseSensitive) {
         caseSensitive = typeof caseSensitive !== 'undefined' ? caseSensitive : false;
+        var orig = input.slice(0);
+
+        var add = function (str, place, i) {
+            result[place].push(str);
+            input.splice(i, 1);
+            orig.splice(i, 1);
+        }
 
         if (!caseSensitive) {
-            // we need lower case input
+            query = query.toLowerCase();
+            for (var i=0; i<input.length; i++) {
+                input[i] = input[i].toLowerCase();
+            }
         }
 
         var fuzz = explode(query.toLowerCase(), false);
         
         for (var i=0; i<input.length; i++) {
             var thing = input[i],
+                origthing = orig[i],
                 arr = thing.split(' '),
                 added = false;
 
 
             if (arr[0].indexOf(query) === 0) {
-                result["1"].push(thing);
-                input.splice(i, 1);
+                add(origthing, "1", i);
                 added = true;
             } else {
                 for (var j=0; j<arr.length; j++) {
                     var elem = arr[j];
                     
                     if (elem.indexOf(query) === 0) {
-                        result["2"].push(thing);
-                        input.splice(i, 1);
+                        add(origthing, "2", i);
                         added = true;
                         break;
                     }
@@ -44,8 +54,7 @@ var fuzzy = (function () {
                         var elem = arr[j];
                         
                         if (elem.indexOf(query) !== -1) {
-                            result["3"].push(thing);
-                            input.splice(i, 1);
+                            add(origthing, "3", i);
                             added = true;
                             break;
                         }
@@ -63,8 +72,7 @@ var fuzzy = (function () {
                     }
 
                     if (added) {
-                        result["4"].push(thing);
-                        input.splice(i, 1);
+                        add(origthing, "4", i);
                     }
                 }
             }   
