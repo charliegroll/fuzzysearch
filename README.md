@@ -13,7 +13,7 @@ A fuzzy-search implementation, inspired by Sublime Text 2's awesome fuzziness, t
   "3" [contains the query]
   "4" [contains the query... fuzzily] "the cat" fuzzily contains "ah"
 
-- [ ] case-insensitivity
+- [x] case-insensitivity
 - [ ] optimization (I know this isn't the best implementation, but it's a first shot)
 - [ ] possibly remove indexOf to enable IE8 (I really hate IE...)
 
