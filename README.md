@@ -15,6 +15,6 @@ A fuzzy-search implementation, inspired by Sublime Text 2's awesome fuzziness, t
 
 - [x] case-insensitivity
 - [ ] optimization (I know this isn't the best implementation, but it's a first shot)
-- [ ] possibly remove indexOf to enable IE8 (I really hate IE...)
+- [ ] possibly remove indexOf and forEach to enable IE8 (I really hate IE...)
 
 test.js is a Node.js testing script to use my (Mac OS X) words file with some simple searches.
