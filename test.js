@@ -1,7 +1,7 @@
 var test = [],
 	result,
 	fs = require('fs'),
-	fuzzy = require('./fuzzy').fuzzy,
+	fuzzy = require('./fuzzy').Fuzzy,
 	filename = '/usr/share/dict/words',
 	limit = process.argv[2] || 100,
 	rl = require('readline').createInterface({
@@ -13,6 +13,8 @@ var test = [],
 	        rl.close();
 	    }
 	}).on('close', function() {
-	    result = fuzzy(test, "dide");
+		console.log(fuzzy.indexes);
+	    result = fuzzy.fuzzy(test, "dide");
 	    console.log(result);
+	    console.log(fuzzy.indexes);
 	});
