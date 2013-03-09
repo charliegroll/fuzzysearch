@@ -1,7 +1,7 @@
 var Fuzzy = (function () {
     var Fuzzy = {};
 
-    result = {
+    var result = {
         "1": [],    // starts with
         "2": [],    // any after starts with
         "3": [],    // contains
@@ -15,11 +15,39 @@ var Fuzzy = (function () {
         "4": [] 
     };
 
+    Fuzzy.flatten = function (obj) {
+        if (typeof obj === 'undefined'){
+            return [];
+        } else if (typeof obj !== 'object') {
+            throw "Flatten takes an object as input!";
+        } else if (obj instanceof Array) {
+            return obj;
+        }
+
+        var res = [],
+            k = Object.keys(obj);
+
+        k.forEach(function (el, i) {
+            res = res.concat(obj[el]);
+        });
+
+        return res;
+    }
+
     // input: array of what's to be searched
     // query: what we're searching for... duh
     // caseSensitive: boolean, defaults to false (means we don't care about case)
     Fuzzy.fuzzy = function (input, query, caseSensitive) {
         caseSensitive = typeof caseSensitive !== 'undefined' ? caseSensitive : false;
+
+        if (!(input instanceof Array)) {
+            throw "Fuzzy requires an array input!";
+        }
+
+        if (typeof query !== 'string') {
+            throw "Fuzzy requires a string query!";
+        }
+
         var orig = input.slice(0),
             o = input.slice(0); // we wanna store the original indexes from input, so we need to keep input intact somewhere
 
@@ -37,7 +65,7 @@ var Fuzzy = (function () {
             }
         }
 
-        var fuzz = Fuzzy.explode(query.toLowerCase(), false);
+        var fuzz = explode(query.toLowerCase(), false);
         
         for (var i=0; i<input.length; i++) {
             var thing = input[i],
@@ -73,7 +101,7 @@ var Fuzzy = (function () {
                 }
                 
                 if (!added){
-                    var everything = Fuzzy.explode(thing);
+                    var everything = explode(thing);
                     added = true;
                     for (var j=0; j<fuzz.length; j++) {
                         if (everything.indexOf(fuzz[j]) === -1) {
@@ -95,7 +123,7 @@ var Fuzzy = (function () {
         return result;
     }
 
-    Fuzzy.explode = function (string, duplicates) {
+    var explode = function (string, duplicates) {
         var result = [];
         duplicates = typeof duplicates !== 'undefined' ? duplicates : true;
 

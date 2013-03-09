@@ -13,8 +13,9 @@ var test = [],
 	        rl.close();
 	    }
 	}).on('close', function() {
-		console.log(fuzzy.indexes);
 	    result = fuzzy.fuzzy(test, "dide");
 	    console.log(result);
+	    console.log(fuzzy.flatten(result));
 	    console.log(fuzzy.indexes);
+	    console.log(fuzzy.flatten(fuzzy.indexes));
 	});
