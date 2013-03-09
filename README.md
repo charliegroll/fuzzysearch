@@ -13,14 +13,15 @@ A fuzzy-search implementation, inspired by Sublime Text 2's awesome fuzziness, t
   "3" [contains the query]
   "4" [contains the query... fuzzily] "the cat" fuzzily contains "ah"
 
-```Fuzzy.indexes```
+```Fuzzy.indexes ```
 - returns a map (resembling the result of ```Fuzzy.fuzzy()```) that contains the indexes, in order, of the results from ```Fuzzy.fuzzy()```
 - requires ```Fuzzy.fuzzy()``` is called first
 
-```Fuzzy.flatten(obj)```
+```Fuzzy.flatten(obj) ```
 - ```obj``` is an object or array to flatten
 - returns an array of all its elements, in order.
 
+To Do:
 - [x] case-insensitivity
 - [ ] optimization (I know this isn't the best implementation, but it's a first shot)
 - [ ] possibly remove indexOf and forEach to enable IE8 (I really hate IE...)
