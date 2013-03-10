@@ -1,5 +1,4 @@
-fuzzysearch
-===========
+# fuzzysearch
 
 A fuzzy-search implementation, inspired by Sublime Text 2's awesome fuzziness, that's written in pure javascript. It can be used as a Node.js module or in a browser.
 
@@ -24,8 +23,7 @@ A fuzzy-search implementation, inspired by Sublime Text 2's awesome fuzziness, t
 ```Fuzzy.clear() ```
 - clears Fuzzy.result and Fuzzy.indexes
 
-Implementation (in Node)
-========================
+## Implementation (in Node)
 
 ```javascript
 var Fuzzy = require('./fuzzy').Fuzzy;
@@ -35,10 +33,19 @@ var indexes = Fuzzy.flatten(Fuzzy.indexes); // indexes from the original array
 Fuzzy.clear(); // clear it out for next use
 ```
 
-To Do:
-======
+
+### To Do:
+
 - [x] case-insensitivity
 - [ ] optimization (I know this isn't the best implementation, but it's a first shot)
 - [ ] possibly remove indexOf and forEach to enable IE8 (I really hate IE...)
 
 test.js is a Node.js testing script to use my (Mac OS X) words file with some simple searches.
+
+
+
+## License 
+
+MIT licensed
+
+Copyright (C) 2013 Charlie Groll, http://charliegroll.com
