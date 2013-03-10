@@ -13,9 +13,13 @@ var test = [],
 	        rl.close();
 	    }
 	}).on('close', function() {
-	    result = fuzzy.fuzzy(test, "dide");
-	    console.log(result);
-	    console.log(fuzzy.flatten(result));
+		fuzzy.clear();
+	    fuzzy.search(test, "dide");
+	    console.log(fuzzy.result);
+	    console.log(fuzzy.flatten(fuzzy.result));
 	    console.log(fuzzy.indexes);
 	    console.log(fuzzy.flatten(fuzzy.indexes));
+	    fuzzy.clear();
+	    console.log(fuzzy.result);
+	    console.log(fuzzy.indexes);
 	});

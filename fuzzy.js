@@ -1,7 +1,7 @@
 var Fuzzy = (function () {
     var Fuzzy = {};
 
-    var result = {
+    Fuzzy.result = {
         "1": [],    // starts with
         "2": [],    // any after starts with
         "3": [],    // contains
@@ -15,6 +15,7 @@ var Fuzzy = (function () {
         "4": [] 
     };
 
+    // obj: an object to flatten (returns an array, in order, of the object's elements)
     Fuzzy.flatten = function (obj) {
         if (typeof obj === 'undefined'){
             return [];
@@ -37,7 +38,7 @@ var Fuzzy = (function () {
     // input: array of what's to be searched
     // query: what we're searching for... duh
     // caseSensitive: boolean, defaults to false (means we don't care about case)
-    Fuzzy.fuzzy = function (input, query, caseSensitive) {
+    Fuzzy.search = function (input, query, caseSensitive) {
         caseSensitive = typeof caseSensitive !== 'undefined' ? caseSensitive : false;
 
         if (!(input instanceof Array)) {
@@ -52,7 +53,7 @@ var Fuzzy = (function () {
             o = input.slice(0); // we wanna store the original indexes from input, so we need to keep input intact somewhere
 
         var add = function (str, place, i) {
-            result[place].push(str);
+            Fuzzy.result[place].push(str);
             Fuzzy.indexes[place].push(o.indexOf(str));
             input.splice(i, 1);
             orig.splice(i, 1);
@@ -120,7 +121,23 @@ var Fuzzy = (function () {
             }
         }
         
-        return result;
+        return Fuzzy.result;
+    }
+
+    Fuzzy.clear = function () {
+        this.result = {
+            "1": [],    
+            "2": [],
+            "3": [],
+            "4": []
+        };
+
+        this.indexes = {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [] 
+        };
     }
 
     var explode = function (string, duplicates) {
