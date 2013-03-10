@@ -3,8 +3,8 @@ fuzzysearch
 
 A fuzzy-search implementation, inspired by Sublime Text 2's awesome fuzziness, that's written in pure javascript. It can be used as a Node.js module or in a browser.
 
-```Fuzzy.fuzzy(input, query, caseSensitive)```
-- ```input``` is an array of possible matches
+```Fuzzy.search(input, query, caseSensitive)```
+- ```input``` is an array of possible matches (strings)
 - ```query``` is the string to search for
 - ```caseSensitive``` is a boolean (defaulting to false) that denotes case-sensitivity
 - returns a map of 4 arrays
@@ -21,7 +21,22 @@ A fuzzy-search implementation, inspired by Sublime Text 2's awesome fuzziness, t
 - ```obj``` is an object or array to flatten
 - returns an array of all its elements, in order.
 
+```Fuzzy.clear() ```
+- clears Fuzzy.result and Fuzzy.indexes
+
+Implementation (in Node)
+========================
+
+```javascript
+var Fuzzy = require('./fuzzy').Fuzzy;
+Fuzzy.search(array, query); // also returns Fuzzy.result, if you want to store it inline
+var result = Fuzzy.result;
+var indexes = Fuzzy.flatten(Fuzzy.indexes); // indexes from the original array
+Fuzzy.clear(); // clear it out for next use
+```
+
 To Do:
+======
 - [x] case-insensitivity
 - [ ] optimization (I know this isn't the best implementation, but it's a first shot)
 - [ ] possibly remove indexOf and forEach to enable IE8 (I really hate IE...)
