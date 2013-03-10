@@ -1,3 +1,9 @@
+/*!
+ * fuzzysearch
+ * MIT licensed
+ *
+ * Copyright (C) 2013 Charlie Groll, http://charliegroll.com
+ */
 var Fuzzy = (function () {
     var Fuzzy = {};
 
