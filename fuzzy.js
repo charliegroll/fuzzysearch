@@ -1,4 +1,4 @@
-/*!
+/** @preserve
  * fuzzysearch
  * MIT licensed
  *
