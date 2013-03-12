@@ -130,6 +130,16 @@ var Fuzzy = (function () {
         return Fuzzy.result;
     }
 
+    // uses Fuzzy.search() with the additional selector param
+    // selector: a basic css selector like 'a.class' for which elements in the list should be searched
+    Fuzzy.searchElems = function (elems, selector, query, caseSensitive) {
+        var arr = [];
+
+        elems.forEach(function (el, i) {
+
+        });
+    }
+
     Fuzzy.clear = function () {
         this.result = {
             "1": [],    
