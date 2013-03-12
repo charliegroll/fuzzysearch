@@ -136,8 +136,21 @@ var Fuzzy = (function () {
         var arr = [];
 
         elems.forEach(function (el, i) {
-
+            if (isElement(el)) {
+                // find string
+                el.querySelectorAll(selector).forEach(function (el, i) {
+                    // no, really... find string.
+                });
+                arr.push()
+            }
         });
+
+        function isElement(o){
+            return (
+                typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
+                    o && typeof o === "object" && o.nodeType === 1 && typeof o.nodeName==="string"
+            );
+        }
     }
 
     Fuzzy.clear = function () {
