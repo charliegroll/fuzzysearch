@@ -37,8 +37,8 @@ Fuzzy.clear(); // clear it out for next use
 ### To Do:
 
 - [x] case-insensitivity
-- [ ] optimization (I know this isn't the best implementation, but it's a first shot)
-- [ ] possibly remove indexOf and forEach to enable IE8 (I really hate IE...)
+- [ ] optimization (I know this probably isn't the best implementation, but it's a first shot)
+- [x] possibly remove indexOf and forEach to enable IE8 (I really hate IE...)
 
 test.js is a Node.js testing script to use my (Mac OS X) words file with some simple searches.
 
