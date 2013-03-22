@@ -55,26 +55,26 @@ function Fuzzy (){
         }
 
         var orig = input.slice(0),
-            o = input.slice(0); // we wanna store the original indexes from input, so we need to keep input intact somewhere
+            original = input.slice(0); // we wanna store the original indexes from input, so we need to keep input intact somewhere
 
         var add = function (result, indexes, str, place, i) {
             result[place].push(str);
-            indexes[place].push(o.indexOf(str));
-            input.splice(i, 1);
+            indexes[place].push(input.indexOf(str));
+            original.splice(i, 1);
             orig.splice(i, 1);
         }
 
         if (!caseSensitive) {
             query = query.toLowerCase();
-            for (var i=0; i<input.length; i++) {
-                input[i] = input[i].toLowerCase();
+            for (var i=0; i<original.length; i++) {
+                original[i] = original[i].toLowerCase();
             }
         }
 
         var fuzz = explode(query.toLowerCase(), false);
         
-        for (var i=0; i<input.length; i++) {
-            var thing = input[i],
+        for (var i=0; i<original.length; i++) {
+            var thing = original[i],
                 origthing = orig[i],
                 arr = thing.split(' '),
                 added = false;
@@ -124,7 +124,7 @@ function Fuzzy (){
                 i--;
             }
         }
-        
+
         return this.result;
     }
 
