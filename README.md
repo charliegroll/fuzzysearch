@@ -26,11 +26,12 @@ A fuzzy-search implementation, inspired by Sublime Text 2's awesome fuzziness, t
 ## Implementation (in Node)
 
 ```javascript
-var Fuzzy = require('./fuzzy').Fuzzy;
-Fuzzy.search(array, query); // also returns Fuzzy.result, if you want to store it inline
-var result = Fuzzy.result;
-var indexes = Fuzzy.flatten(Fuzzy.indexes); // indexes from the original array
-Fuzzy.clear(); // clear it out for next use
+var fuzzy = require('./fuzzy').Fuzzy;
+var fuzz = new fuzzy();
+fuzz.search(array, query); // also returns Fuzzy.result, if you want to store it inline
+var result = fuzz.result;
+var indexes = fuzz.flatten(fuzz.indexes); // indexes from the original array
+fuzz.clear(); // clear it out for next use
 ```
 
 
