@@ -2,6 +2,7 @@ var test = [],
 	result,
 	fs = require('fs'),
 	fuzzy = require('./fuzzy').Fuzzy,
+	fuzz2 = require('./fuzzy').Fuzzy,
 	filename = '/usr/share/dict/words',
 	limit = process.argv[2] || 100,
 	rl = require('readline').createInterface({
@@ -22,4 +23,8 @@ var test = [],
 	    fuzzy.clear();
 	    console.log(fuzzy.result);
 	    console.log(fuzzy.indexes);
+	    console.log();
+	    fuzz2.search(['ed','de','edward','Eddy'], "ed");
+	    console.log(fuzz2.result);
+	    console.log(fuzz2.indexes);
 	});
