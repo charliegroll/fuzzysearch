@@ -26,19 +26,21 @@ A fuzzy-search implementation, inspired by Sublime Text 2's awesome fuzziness, t
 ## Implementation (in Node)
 
 ```javascript
-var Fuzzy = require('./fuzzy').Fuzzy;
-Fuzzy.search(array, query); // also returns Fuzzy.result, if you want to store it inline
-var result = Fuzzy.result;
-var indexes = Fuzzy.flatten(Fuzzy.indexes); // indexes from the original array
-Fuzzy.clear(); // clear it out for next use
+var fuzzy = require('./fuzzy').Fuzzy;
+var fuzz = new fuzzy();
+fuzz.search(array, query); // also returns Fuzzy.result, if you want to store it inline
+var result = fuzz.result;
+var indexes = fuzz.flatten(fuzz.indexes); // indexes from the original array
+fuzz.clear(); // clear it out for next use
 ```
 
 
 ### To Do:
 
 - [x] case-insensitivity
-- [ ] optimization (I know this isn't the best implementation, but it's a first shot)
-- [ ] possibly remove indexOf and forEach to enable IE8 (I really hate IE...)
+- [ ] optimization (I know this probably isn't the best implementation, but it's a first shot)
+- [x] possibly remove indexOf and forEach to enable IE8 (I really hate IE...)
+- [ ] indexing/new searches
 
 test.js is a Node.js testing script to use my (Mac OS X) words file with some simple searches.
 
