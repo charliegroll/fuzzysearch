@@ -15,7 +15,8 @@ var test = [],
 	    }
 	}).on('close', function() {
 		fuzzy.clear();
-	    fuzzy.search(test, "dide");
+		fuzzy.init(test),
+	    fuzzy.search("dide");
 	    console.log(fuzzy.result);
 	    console.log(fuzzy.flatten(fuzzy.result));
 	    console.log(fuzzy.indexes);
@@ -24,7 +25,8 @@ var test = [],
 	    console.log(fuzzy.result);
 	    console.log(fuzzy.indexes);
 	    console.log();
-	    fuzz2.search(['ed','de','edward','Eddy'], "ed");
+	    fuzz2.init(['ed','de','edward','Eddy']);
+	    fuzz2.search('ed', true);
 	    console.log(fuzz2.result);
 	    console.log(fuzz2.indexes);
 	});

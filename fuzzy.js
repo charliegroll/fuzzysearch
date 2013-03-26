@@ -6,6 +6,8 @@
  */
 var Fuzzy = {};
 
+Fuzzy.input = [];
+
 Fuzzy.result = {
     "1": [],    // starts with
     "2": [],    // any after starts with
@@ -40,41 +42,44 @@ Fuzzy.flatten = function (obj) {
     return res;
 }
 
-// input: array of what's to be searched
-// query: what we're searching for... duh
-// caseSensitive: boolean, defaults to false (means we don't care about case)
-Fuzzy.search = function (input, query, caseSensitive) {
-    caseSensitive = typeof caseSensitive !== 'undefined' ? caseSensitive : false;
-
+Fuzzy.init = function (input) {
     if (!(input instanceof Array)) {
         throw "Fuzzy requires an array input!";
     }
+
+    Fuzzy.input = input;
+};
+
+// query: what we're searching for... duh
+// caseSensitive: boolean, defaults to false (means we don't care about case)
+Fuzzy.search = function (query, caseSensitive) {
+    caseSensitive = typeof caseSensitive !== 'undefined' ? caseSensitive : false;
 
     if (typeof query !== 'string') {
         throw "Fuzzy requires a string query!";
     }
 
-    var orig = input.slice(0),
-        o = input.slice(0); // we wanna store the original indexes from input, so we need to keep input intact somewhere
+    var orig = Fuzzy.input.slice(0),
+        o = Fuzzy.input.slice(0); // we wanna store the original indexes from input, so we need to keep input intact somewhere
 
     var add = function (str, place, i) {
         Fuzzy.result[place].push(str);
         Fuzzy.indexes[place].push(o.indexOf(str));
-        input.splice(i, 1);
+        Fuzzy.input.splice(i, 1);
         orig.splice(i, 1);
     }
 
     if (!caseSensitive) {
         query = query.toLowerCase();
-        for (var i=0; i<input.length; i++) {
-            input[i] = input[i].toLowerCase();
+        for (var i=0; i<Fuzzy.input.length; i++) {
+            Fuzzy.input[i] = Fuzzy.input[i].toLowerCase();
         }
     }
 
     var fuzz = explode(query.toLowerCase(), false);
     
-    for (var i=0; i<input.length; i++) {
-        var thing = input[i],
+    for (var i=0; i<Fuzzy.input.length; i++) {
+        var thing = Fuzzy.input[i],
             origthing = orig[i],
             arr = thing.split(' '),
             added = false;
